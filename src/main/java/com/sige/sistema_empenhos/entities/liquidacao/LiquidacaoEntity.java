@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -17,12 +18,18 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class LiquidacaoEntity {
-    @Id
-    @GeneratedValue
-    private UUID id;
+public class LiquidacaoEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(updatable = false, nullable = false)
+    private Long id;
+
+    @Column(name = "valor", nullable = false, precision = 15, scale = 2)
     private BigDecimal valorLiquidacao;
+
+    @Column(name = "data_liquidada", nullable = false)
     private LocalDateTime dataLiquidacao;
 
     @ManyToOne // empenho pode ter varias liquidacoes

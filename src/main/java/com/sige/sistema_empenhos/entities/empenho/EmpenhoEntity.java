@@ -1,32 +1,45 @@
 package com.sige.sistema_empenhos.entities.empenho;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.UUID;
+
 
 @Table(name = "TB_EMPENHO")
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
-public class EmpenhoEntity {
-    @Id
-    @GeneratedValue
-    private UUID id;
+@NoArgsConstructor //(access = AccessLevel.PROTECTED)
+// @Builder
+public class EmpenhoEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(updatable = false, nullable = false)
+    private Long id;
+
+    @Column(name = "descricao", nullable = false, length = 255)
     private String descricaoEmpenho;
+
+    @Column(name = "valor", nullable = false, precision = 15, scale = 2)
     private BigDecimal valorEmpenho;
-    private String statusEmpenho;
+
+    @Enumerated(EnumType.STRING) // https://www.baeldung.com/jpa-persisting-enums-in-jpa
+    @Column(name = "status", nullable = false)
+    private Status statusEmpenho;
+
+    @Column(name = "dat_criacao", nullable = false)
     private LocalDateTime dataEmpenho;
 
+    public enum Status {
+        ABERTO, LIQUIDADO, PAGO;
+    }
 }
