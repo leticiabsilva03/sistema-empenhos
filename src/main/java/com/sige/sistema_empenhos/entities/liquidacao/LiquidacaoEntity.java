@@ -10,7 +10,6 @@ import lombok.Setter;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Table(name = "TB_LIQUIDACAO")
 @Entity
@@ -19,7 +18,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LiquidacaoEntity implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 240920251544L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

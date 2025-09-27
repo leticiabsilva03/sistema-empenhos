@@ -10,16 +10,14 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-
 @Table(name = "TB_EMPENHO")
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor //(access = AccessLevel.PROTECTED)
-// @Builder
+@NoArgsConstructor
 public class EmpenhoEntity implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 240920251543L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +30,7 @@ public class EmpenhoEntity implements Serializable {
     @Column(name = "valor", nullable = false, precision = 15, scale = 2)
     private BigDecimal valorEmpenho;
 
-    @Enumerated(EnumType.STRING) // https://www.baeldung.com/jpa-persisting-enums-in-jpa
+    @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private Status statusEmpenho;
 
@@ -41,5 +39,11 @@ public class EmpenhoEntity implements Serializable {
 
     public enum Status {
         ABERTO, LIQUIDADO, PAGO;
+    }
+
+    public EmpenhoEntity (String descricaoEmpenho, BigDecimal valorEmpenho, LocalDateTime dataEmpenho){
+        this.descricaoEmpenho = descricaoEmpenho;
+        this.valorEmpenho = valorEmpenho;
+        this.dataEmpenho = dataEmpenho;
     }
 }
