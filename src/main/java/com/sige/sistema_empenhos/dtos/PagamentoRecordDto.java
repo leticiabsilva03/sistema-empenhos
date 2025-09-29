@@ -11,6 +11,6 @@ public record PagamentoRecordDto(
         @NotNull BigDecimal valorPagamento,
         @NotBlank String contaBancaria,
         @NotNull LocalDateTime dataPagamento,
-        @NotNull EmpenhoEntity empenho
+        @NotNull Long idEmpenho
 ) {
 }
