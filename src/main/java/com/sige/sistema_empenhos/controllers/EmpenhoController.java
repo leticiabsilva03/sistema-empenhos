@@ -30,13 +30,13 @@ public class EmpenhoController {
         return ResponseEntity.status(HttpStatus.OK).body(empenhoService.findAll());
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<EmpenhoEntity> getOneEmpenho(@PathVariable(value = "id") Long id){
         EmpenhoEntity empenho = empenhoService.findById(id);
         return ResponseEntity.status(HttpStatus.OK).body(empenho);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteEmpenho(@PathVariable(value = "id") Long id){
         empenhoService.delete(id);
         return ResponseEntity.status(HttpStatus.OK).body("Empenho excluído com sucesso!");
