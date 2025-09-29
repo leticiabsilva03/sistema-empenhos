@@ -9,6 +9,6 @@ import java.time.LocalDateTime;
 public record LiquidacaoRecordDto(
         @NotNull BigDecimal valorLiquidacao,
         @NotNull LocalDateTime dataLiquidacao,
-        @NotNull EmpenhoEntity empenho
+        @NotNull Long idEmpenho
 ) {
 }
